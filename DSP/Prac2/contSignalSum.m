@@ -2,40 +2,43 @@ clc;
 clear all;
 close all;
 
-n1 = -2:0.01:6;
-x1 = sin()
+t1=-5:1:5; 
+x1=0.2*sin((pi*t1)/6); 
 
-n2 = -5:1:3;
-x2 = [-4 -2 -1 -4 -2 -0 6 9 1];
+t2=-5:0.0001:5;                                                                                                                                       
+x2=0.1;
 
-n = min(min(n1), min(n2)) : max(max(n1), max(n2));
-y1 = zeros(1, length(n));
-y2 = zeros(1, length(n));
+t=min(min(t1),min(t2)):max(max(t1),max(t2)); 
 
-y1((n >= min(n1))&(n <= max(n1))) = x1();
-y2((n >= min(n2))&(n <= max(n2))) = x2();
+y1=zeros(1,length(t)); 
+y2=zeros(1,length(t)); 
 
-x = y1 + y2;
+y1((t>=min(t1))&(t<=max(t1)))=x1(); 
+y2((t>=min(t2))&(t<=max(t2)))=x2(); 
 
-subplot(3, 1, 1);
-stem(n1, x1);
-title('Signal 1');
-xlabel('Time');
-ylabel('Amplitude');
-axis([-7 7 -7 10]);
+x=y1+y2; 
+y=x1+x2; 
 
-subplot(3, 1, 2);
-stem(n2, x2);
-title('Signal 2');
-xlabel('Time');
-ylabel('Amplitude');
-axis([-7 7 -7 10]);
+subplot(4,1,1); 
+plot(t1,x1); 
+title('signal 1'); 
+axis([-8 8 -0.2 0.2]); 
+grid 
 
-subplot(3, 1, 3);
-stem(n, x);
-title('Signal 1 + signal 2 (Zero padding sum)')
-xlabel('Time');
-ylabel('Amplitude');
-axis([-7 7 -7 20]);
+subplot(4,1,2); 
+plot(t2,x2); 
+title('signal 2'); 
+axis([-8 8 -0.2 0.2]); 
+grid 
 
+subplot(4,1,3); 
+plot(t1,y); 
+title('simple addition') 
+axis([-8 8 -0.2 0.5]); 
+grid
 
+subplot(4,1,4); 
+plot(t,x); 
+title('addition'); 
+axis([-8 8 -0.3 0.3]); 
+grid 
